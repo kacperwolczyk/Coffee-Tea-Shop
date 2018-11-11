@@ -30,8 +30,4 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders;
 	
-	public User(String firstname)
-	{
-		this.username = firstname;
-	}
 }
