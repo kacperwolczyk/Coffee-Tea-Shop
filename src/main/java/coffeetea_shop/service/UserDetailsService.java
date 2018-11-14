@@ -23,6 +23,11 @@ public class UserDetailsService {
 		return userDetailsRepository.getUserDetailsByUser(user);
 	}
 	
+	public void addUserDetails(UserDetails userDetails)
+	{
+		userDetailsRepository.save(userDetails);
+	}
+	
 	public void updateUserDetails(UserDetails userDetails)
 	{
 		userDetailsRepository.save(userDetails);
