@@ -1,5 +1,7 @@
 package coffeetea_shop.service;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +28,10 @@ public class OrderItemService {
 		orderItem.setProductCount(count);
 		orderItem.setTotalprice(orderItem.getBuyPrice() * orderItem.getProductCount());
 		orderItemRepository.save(orderItem);
+	}
+	
+	public Set<OrderItem> getOrderItemsByOrder(Order order)
+	{
+		return orderItemRepository.getItemsByOrder(order);
 	}
 }
