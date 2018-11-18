@@ -14,15 +14,15 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="product_id")
 	private Long id;
-	@NotEmpty
+	@NotEmpty(message = "{coffeetea_shop.model.Product.category.NotEmpty}")
 	private String category;
-	@NotEmpty
+	@NotEmpty(message = "{coffeetea_shop.model.Product.name.NotEmpty}")
 	private String name;
-	@NotNull
+	@NotNull(message = "{coffeetea_shop.model.Product.weight.NotNull}")
 	private int weight;
-	@NotNull
+	@NotNull(message = "{coffeetea_shop.model.Product.count.NotNull}")
 	private int count;
-	@NotNull
+	@NotNull(message = "{coffeetea_shop.model.Product.price.NotNull}")
 	private int price;
 
 	@Override

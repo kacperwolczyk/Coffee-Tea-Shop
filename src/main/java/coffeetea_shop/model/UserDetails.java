@@ -16,20 +16,28 @@ public class UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="details_id")
 	private Long id;
-	@NotEmpty
+	
+	@NotEmpty(message = "{coffeetea_shop.model.UserDetails.firstName.NotEmpty}")
 	private String firstName;
-	@NotEmpty
+	
+	@NotEmpty(message = "{coffeetea_shop.model.UserDetails.lastName.NotEmpty}")
 	private String lastName;
-	@NotEmpty
+	
+	@NotEmpty(message = "{coffeetea_shop.model.UserDetails.country.NotEmpty}")
 	private String country;
-	@NotEmpty
+	
+	@NotEmpty(message = "{coffeetea_shop.model.UserDetails.city.NotEmpty}")
 	private String city;
-	@NotEmpty
+	
+	@NotEmpty(message = "{coffeetea_shop.model.UserDetails.code.NotEmpty}")
 	private String code;
-	@NotEmpty
+	
+	@NotEmpty(message = "{coffeetea_shop.model.UserDetails.street.NotEmpty}")
 	private String street;
-	@NotNull
+	
+	@NotNull(message = "{coffeetea_shop.model.UserDetails.number.NotNull}")
 	private int number;
+	
     @OneToOne(mappedBy = "details")
     private User user;
 }
