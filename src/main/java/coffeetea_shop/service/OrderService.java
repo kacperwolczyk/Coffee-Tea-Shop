@@ -26,6 +26,12 @@ public class OrderService {
 		order.setOrderDate(LocalDate.now());
 		order.setStatus("waiting");
 		order.setUser(user);
+		order.setCountry(user.getDetails().getCountry());
+		order.setCode(user.getDetails().getCode());
+		order.setCity(user.getDetails().getCity());
+		order.setStreet(user.getDetails().getStreet());
+		order.setNumber(user.getDetails().getNumber());
+		
 		return orderRepository.save(order);
 	}
 	
@@ -37,6 +43,11 @@ public class OrderService {
 	public Order getOrderById(Long id)
 	{
 		return orderRepository.getOrderById(id);
+	}
+	
+	public List<Order> getAllOrders()
+	{
+		return orderRepository.findAll();
 	}
 	
 	public List<Order> getOrderByUser(User user)
