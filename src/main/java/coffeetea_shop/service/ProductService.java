@@ -34,9 +34,9 @@ public class ProductService {
 		return productRepository.getProductsByCategory(category);
 	}
 	
-	public Product getProductByName(String name)
+	public Product getProductByNameAndCategoryAndWeight(String name, String category, int weight)
 	{
-		return productRepository.getProductByName(name);
+		return productRepository.getProductByNameAndCategoryAndWeight(name, category, weight);
 	}
 	
 	public List<Product> getProducts()

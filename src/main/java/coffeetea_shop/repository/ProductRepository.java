@@ -10,6 +10,6 @@ import coffeetea_shop.model.*;
 public interface ProductRepository extends JpaRepository<Product, Long>{
 
 	List<Product> getProductsByCategory(String category);
-	Product getProductByName(String name);
+	Product getProductByNameAndCategoryAndWeight(String name, String category, int weight);
 	Product getProductById(Long id);
 }
