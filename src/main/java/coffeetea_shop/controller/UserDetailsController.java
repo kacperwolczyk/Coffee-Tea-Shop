@@ -33,14 +33,16 @@ public class UserDetailsController {
 	public String addUser(@ModelAttribute @Valid UserDetails userDetails,
 			BindingResult bindResult, 
 			Principal principal) {
-		if(!bindResult.hasErrors())
+		if(bindResult.hasErrors())
 		{
-			User user = userService.getUserByUsername(principal.getName());
-			userDetailsService.addUserDetails(userDetails);
-			user.setDetails(userDetails);
-			user.setStatus("active");
-			userService.updateUser(user);
+			return "afterFirstLogin";
 		}		
+
+		User user = userService.getUserByUsername(principal.getName());
+		userDetailsService.addUserDetails(userDetails);
+		user.setDetails(userDetails);
+		user.setStatus("active");
+		userService.updateUser(user);
 		return "redirect:/userpanel";
 	}
 }
