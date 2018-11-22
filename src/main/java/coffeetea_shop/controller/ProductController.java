@@ -33,9 +33,9 @@ public class ProductController {
 	}
 	
 	@GetMapping("/list")
-	public String productList(Model model)
+	public String productList(Model model, @RequestParam (defaultValue = "1")int page)
 	{
-		model.addAttribute("productList", productService.getProducts());
+		model.addAttribute("productList", productService.getProductsPageable(page-1, 8));
 		model.addAttribute("shoppingcart", shoppingCart.getProducts());
 		model.addAttribute("shoppingcartvalue", shoppingCart.getTotalPrice());
 		return "productList";
