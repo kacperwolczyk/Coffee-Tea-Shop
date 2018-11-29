@@ -1,0 +1,417 @@
+body
+{
+	background-color: #E8E8E8;
+	margin: 0px;
+	font-size: 20px;
+	font-family: 'Lato', sans-serif;
+}
+
+a:link {
+    text-decoration: none;
+	color: #000000;
+}
+
+a:visited {
+    text-decoration: none;
+	color: #000000;
+}
+
+#container
+{
+	border: 2px solid #000000;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#panel
+{
+	font-weight: bold;
+	background-color: #9E7649;
+	min-height: 43px;
+	padding-top: 12px;
+	border-bottom: 2px solid #000000;
+}
+
+
+#panelbox1
+{
+	font-size: 24px;
+	margin-left: 20px;
+	margin-right: 490px;
+	float: left;
+	width: 200px;
+}
+
+.panelbox2
+{
+	text-align: center;
+	float: left;
+	width: 130px;
+	heigth: 30px;
+	margin-left: 10px;
+}
+
+.logoutbutton 
+{
+	font-weight: bold;
+	font-size: 20px;
+	font-family: 'Lato', sans-serif;
+	background-color: #9E7649;
+	border: none;
+	width: 130px;
+	heigth: 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+	margin-left: 10px;
+}
+
+.logoutbutton:hover
+{
+	cursor: pointer;
+}
+
+#content
+{
+	background-color: #E8E8E8;
+	min-height: 520px;
+}
+
+#leftcontent
+{
+	padding: 10px;
+	float: left;
+	width: 720px;
+	min-height: 520px;
+	border-right: 2px solid #000000;
+}
+
+.productbox
+{
+	background-color: #ffffff;
+	float: left;
+	height: 210px;
+	width: 151px;
+	margin: 10px;
+	border: 2px solid #60442F;
+	border-collapse: separate;
+	border-radius: 25px;
+}
+
+.productimg
+{
+	padding-top: 10px;
+	height: 130px;
+	text-align: center;
+}
+
+.productname
+{
+	text-align: center;
+	font-size: 15px;
+	padding-bottom: 5px;
+	font-weight: bold;
+	height: 15px;
+}
+
+.productprice
+{
+	text-align: center;
+	font-size: 10px;
+	font-weight: bold;
+	height: 15px;
+}
+
+.productbutton
+{
+	text-align: center;
+	width: 100px;
+	border: 2px solid #60442F;
+	height: 25px;
+	color: #60442F;
+	font-weight: bold;
+	margin-left:auto;
+	margin-right: auto;
+	border-radius: 10px;
+}
+
+.productbutton:hover
+{
+	cursor: pointer;
+	background-color: #E8E8E8;
+}
+
+.productimglarge
+{
+	float: left;
+	margin: 30px;
+	margin-left: 50px;
+	width: 200px;
+	height: 200px;
+}
+
+.productinformation
+{
+	border-top: 1px solid #000000;
+	font-size: 18px;
+	padding: 10px;
+}
+
+.productcard
+{
+	font-size: 18px;
+	margin: 30px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	padding: 20px;
+	height: 160px;
+	border-left: 1px solid #000000;
+	float: left;
+}
+
+.addbutton
+{
+	font-size: 16px;
+	font-weight: bold;
+	margin-top: 10px;
+	text-align: center;
+	height: 30px;
+	width: 140px;
+	border: 2px solid #60442F;
+	border-radius: 10px;
+	color: #60442F;
+}
+
+.addbutton:hover
+{
+	cursor: pointer;
+}
+
+#rightcontent
+{
+	padding: 10px;
+	float: left;
+}
+.shoppingcartbox
+{
+	width: 220px;
+	height: 65px;
+	padding: 5px;
+	border: 2px solid #60442F;
+	background-color: #E8E8E8;
+	font-size: 14px;
+	color: #60442F;
+	font-weight: bold;
+	margin-bottom: 10px;
+	border-radius: 10px;
+}
+
+.redbuttonimg
+{
+	margin-top: 15px;
+	margin-left: 65px;
+	float: left;
+}
+
+.shoppingcartsubmit
+{
+	background-color: #48B557;
+	text-align: center;
+	width: 230px;
+	height: 40px;
+	border: 2px solid #60442F;
+	color: #000000;
+	font-weight: bold;
+	font-size: 18px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.shoppingcartsubmit:hover
+{
+	cursor: pointer;
+}
+#footer
+{
+	border-top: 2px solid #000000;
+	background-color: #9E7649;
+	min-height: 30px;
+	padding-top: 10px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.orderdetailsbox
+{	
+	padding-bottom: 5px;
+	min-height: 80px;
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	border: 2px solid #60442F;
+	font-size: 18px;
+	border-radius: 10px;
+}
+
+.orderdetailsboxtitle
+{
+	min-height: 20px;
+	background-color: #9E7649;
+	border-bottom: 2px solid #60442F;
+	padding: 2px;
+	font-weight: bold;
+}
+
+.userpanelinfo
+{	
+	float: left;
+	min-height: 200px;
+	margin-left: 100px;
+	width: 346px;
+	margin-top: 20px;
+	border: 2px solid #60442F;
+	font-size: 18px;
+	border-radius: 10px;
+}
+
+.userpanelinfoleft
+{
+	margin-top: 20px;
+	margin-left: 20px;
+	float: left;
+	width: 142px;
+	height: 130px;
+}
+
+.userpanelinforight
+{
+	margin-top: 20px;
+	height: 130px;
+	margin-left: 20px;
+	width: 142px;
+	float: left;
+}
+
+.userpanelinfoadress
+{	
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+table 
+{
+    width: 100%;
+
+}
+
+th 
+{
+    text-align: left;
+}
+th, td 
+{
+	font-size: 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.paybutton
+{
+	height: 40px;
+	width: 400px;
+	text-decoration: none;
+	clear: both;
+	background-color: #48B557;
+	color: #ffffff;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+.paybutton:hover
+{
+	cursor: pointer;
+}
+
+.orderdetailsbutton
+{
+	font-family: 'Lato', sans-serif;
+	text-align: center;
+	border: 2px solid #60442F;
+	border-radius: 5px;	
+}
+
+.orderdetailsbutton:hover
+{
+	cursor:pointer;
+}
+
+.errors
+{
+	font-size: 12px;
+	color: red;
+	font-weight: bold;
+}
+
+.invalidMessage
+{
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 16px;
+	margin-top:10px;
+	min-heigth: 30px;
+	font-weight: bold;
+	border: 2px solid #A90F0F;
+	background-color: #FFA7A7;
+	color: #A90F0F;
+	padding: 5px;
+}
+
+.correctMessage
+{
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	font-size: 16px;
+	margin-top:10px;
+	min-heigth: 30px;
+	font-weight: bold;
+	border: 2px solid #14771E;
+	background-color: #6EFF6E;
+	color: #14771E;
+	padding: 5px;
+}
+
+.pagination
+{
+	width: 100px;
+	clear:both;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.paginationbox
+{
+	float:left;
+	margin-right:5px;
+	text-align: center;
+	width: 21px;
+	height: 25px;
+	border: 2px solid #60442F;
+	border-radius: 2px;	
+}
+
+.fieldname
+{
+	font-weight: bold;
+	font-size: 12px;
+}
+
+
+
+
+
+

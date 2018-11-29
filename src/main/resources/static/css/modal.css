@@ -1,0 +1,88 @@
+
+.quickViewTrigger
+{
+
+}
+
+.quickViewTrigger:hover
+{
+	cursor: pointer;
+}
+/* MODAL */
+.quickViewContainer 
+{
+	width:550px; 
+	position:fixed; 
+	background-color: #ffffff; 
+	border:2px solid #60442F; 
+	top:20%; 
+	left:50%; 
+	transform:translateX(-50%); 
+	box-shadow:0 8px 17px 0 #989595; 
+	display:none;
+}
+
+.quickViewTitle 
+{
+	padding:10px 10px; 
+	border-bottom:1px solid #60442F; 
+	margin:0 0 0px 0; color:#60442F; 
+	font-size:16px; 
+	background-color: #E8E8E8; 
+	font-weight:bold; 
+	vertical-align:middle;
+}
+
+.quickViewBody 
+{
+	padding:10px 20px 10px 10px; 
+	color:#000000; 
+	font-size:13px; 
+	margin:0 0 10px 0;
+}
+
+/* MODAL CLOSE */
+#quickViewCloseButton 
+{
+	box-sizing:border-box; 
+	background:#60442F; 
+	display:block; 
+	width:30px; 
+	height:30px; 
+	border-radius:15px; 
+	position:absolute; 
+	top:3px; 
+	right:0px;  
+	z-index:200; 
+	cursor:pointer; 
+	margin:4px 10px 0 0;
+}
+/* ---- MODAL CLOSE X STATIC----*/
+#quickViewCloseButton:before 
+{
+	background-color:#F2F2F2; 
+	content:''; 
+	display:block; 
+	width:20px; 
+	height:2px; 
+	position:absolute; 
+	top:14px; 
+	transform:rotate(45deg); 
+	border-radius:1px; 
+	right:5px;
+
+}
+
+#quickViewCloseButton span 
+{
+	background-color:#F2F2F2; 
+	content:''; 
+	display:block; 
+	width:20px; 
+	height:2px; 
+	position:absolute; 
+	top:14px;  
+	transform:rotate(135deg); 
+	border-radius:1px; 
+	right:5px;
+}
