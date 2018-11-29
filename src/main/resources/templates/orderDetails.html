@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<meta charset="UTF-8">
+	<title>My Online Shop</title>
+	<link th:src="@{/css/style.css}" href="/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+	<div id="container">
+		<div th:replace="fragments :: panel"></div>
+
+		<div id="content">
+			<div class="orderdetailsbox" style="padding: 10px;">
+				Order Information<br>
+        		<table>
+            		<tr>
+              	 		<th>Order number</th>
+               			<th>Order Date</th>
+               			<th>Total price</th>
+               			<th>Status</th>
+           	 		</tr>
+           	 		<tr>
+               			<td th:text="${order.id}"></td>
+               			<td th:text="${order.orderDate}"></td>
+               			<td th:text="${order.totalPrice}"></td>
+               			<td th:text="${order.status}"></td>
+            		</tr>
+    			</table><br><br><br>			
+				Order products<br>
+        		<table>
+            		<tr>
+              	 		<th>Product Category</th>
+               			<th>Product Name</th>
+               			<th>Quantity</th>
+               			<th>Weight</th>
+               			<th>Price</th>
+               			<th>Total price</th>
+           	 		</tr>
+           	 		<tr th:each="orderItem: ${orderItems}">
+               			<td th:text="${orderItem.product.category}"></td>
+               			<td th:text="${orderItem.product.name}"></td>
+               			<td th:text="${orderItem.productCount}"></td>
+               			<td th:text="${orderItem.product.weight}"></td>
+               			<td th:text="${orderItem.buyPrice}"></td>
+               			<td th:text="${orderItem.totalprice}"></td>
+            		</tr>
+    			</table><br><br><br>
+    			Order Address<br>
+        		<table>
+            		<tr>
+            			<th>Name</th>
+            			<th>Surname</th>
+               			<th>Country</th>
+               			<th>City</th>
+               			<th>Code</th>
+               			<th>Street</th>
+           	 		</tr>
+           	 		<tr>
+           	 			<td th:text="${order.user.details.firstName}"></td>
+           	 			<td th:text="${order.user.details.lastName}"></td>
+               			<td th:text="${order.country}"></td>
+               			<td th:text="${order.city}"></td>
+               			<td th:text="${order.code}"></td>
+               			<td th:text="${order.street} +' ' + ${order.number}"></td>
+            		</tr>
+    			</table>			
+			</div>
+		</div>
+		<div th:replace="fragments :: footer"></div>
+	</div>
+</body>
+</html>

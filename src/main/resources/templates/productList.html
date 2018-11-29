@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<meta charset="UTF-8">
+	<title>My Online Shop</title>
+	<link th:src="@{/css/style.css}" href="/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+	<div id="container">
+		<div th:replace="fragments :: panel"></div>
+
+		<div id="content">
+			<div id="leftcontent">
+				<div style="min-height: 468px">
+					<div th:each="product: ${productList}" class="productbox">
+						<div class="productimg"><img th:src="@{/img/product.jpg}" height="130"/></div>
+						<div class="productname" th:text="${product.name}"></div>
+						<div class="productprice" th:text="'Now only '+${product.price}+ ' $!'"></div>
+						<a th:href="@{/list/}+${product.name}+'_'+${product.category}+'?weight='+${product.weight}"><div class="productbutton">Check it!</div></a>
+					</div>
+				</div>
+				<div class="pagination">
+					<a th:href="@{/list?page=1}"><div class="paginationbox">1</div></a>
+					<a th:href="@{/list?page=2}"><div class="paginationbox">2</div></a>
+					<a th:href="@{/list?page=3}"><div class="paginationbox">3</div></a>
+				</div>
+			</div>
+			<div id="rightcontent">
+				<div th:if="${shoppingcart != null}">
+    				<div th:if="not ${shoppingcart.isEmpty()}">
+    					<div th:each="product: ${shoppingcart.entrySet()}">
+    						<div class="shoppingcartbox" >
+    							<div style="float:left">
+    								<div th:text="'Name: '+${product.getKey().name}"></div>
+    								<div th:text="'Category: '+${product.getKey().category}"></div>
+    								<div th:text="'Weight: '+${product.getValue()}+' x '+${product.getKey().weight}+' g'"></div>
+    								<div th:text="'Price: '+${product.getValue()*product.getKey().price}+' $'"></div>
+    							</div>
+    							<div class="redbuttonimg">
+    							
+    								<form th:action="@{/removefromcart}" method="post">
+										<input type="hidden" name="id" th:value="${product.getKey().id}" />
+										<input type="image" th:src="@{/img/redbutton.jpg}" alt="Submit Form" height="30" width="30"/>
+									</form>
+    							</div>
+    							<div style="clear:both"></div>
+    						</div>
+    					</div>
+    					<a th:href="@{/confirmorder}"><div class="shoppingcartsubmit" >
+							<div th:text="'Total value: '+${shoppingcartvalue}+' $'"></div>
+							CONFIRM ORDER
+						</div></a>
+    				</div>
+    			</div>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div th:replace="fragments :: footer"></div>
+	</div>
+</body>
+</html>

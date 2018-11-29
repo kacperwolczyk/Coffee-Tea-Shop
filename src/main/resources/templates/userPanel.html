@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<meta charset="UTF-8">
+	<title>My Online Shop</title>
+	<link th:src="@{/css/style.css}" href="/css/style.css" rel="stylesheet" type="text/css"/>
+	<link th:src="@{/css/modal.css}" href="/css/modal.css" rel="stylesheet" type="text/css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/script.js}"></script>
+</head>
+<body>
+	<div id="container">
+		<div th:replace="fragments :: panel"></div>
+
+		<div id="content">
+			<div th:if="${invalidMessage!= null}"><div class="invalidMessage" th:text="${invalidMessage}"></div></div>
+			<div th:if="${correctMessage}"><div class="correctMessage" th:text="${correctMessage}"></div></div>
+			<div class="userpanelinfo">
+				<div class="orderdetailsboxtitle">
+					Account Information
+				</div>
+				<div class="userpanelinfoleft">
+					<img th:src="@{/img/user.jpg}" height="130" width="142"/>
+				</div>
+				<div class="userpanelinforight">
+					<div th:text="${user.username}"></div>
+					<div th:text="${user.email}"></div>
+					<div th:text="${user.phone}"></div></br>
+					<div style="font-size:10px; font-weight: bold;">If you want to change email/phone, click <span class="quickViewTrigger">HERE</span> 
+						<div class="quickViewContainer">
+							<div id="quickViewCloseButton" class="close" style="margin-right:10px;"><span></span></div>
+							<div class="quickViewTitle">Update your account</div>
+							<div class="quickViewBody">	
+								<form action="#" method="post" th:action="@{/updateuser}" th:object="${user}">
+									<div class="fieldname">Username</div>
+									<input type="text" th:field="*{username}" readonly/><br />
+									<div class="fieldname">Email</div>
+									<input type="email" th:field="*{email}"/><br />
+									<div class="fieldname">Phone</div>				
+									<input type="text" th:field="*{phone}"/><br /><br>						
+									
+									<input type="hidden" th:field="*{status}" />
+									<input type="hidden" th:field="*{details}" />
+									<input type="hidden" th:field="*{password}"/><br />
+									<input type="hidden" th:field="*{id}" />
+									<input type="submit" class="orderdetailsbutton" value="Update" />
+								</form>		
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="userpanelinfo">
+				<div class="orderdetailsboxtitle">
+					Your address
+				</div>
+				<div class="userpanelinfoadress">
+					<div>Name: <label style="font-weight: normal" th:text="${userDetails.firstName}"/></div>
+					<div>Surname: <label style="font-weight: normal" th:text="${userDetails.lastName}"/></div>
+					<div>Country: <label style="font-weight: normal" th:text="${userDetails.country}"/></div>
+					<div>City: <label style="font-weight: normal" th:text="${userDetails.city}"/></div>
+					<div>Code: <label style="font-weight: normal" th:text="${userDetails.code}"/></div>
+					<div>Street: <label style="font-weight: normal" th:text="${userDetails.street} +' '+${userDetails.number}"/></div></br>
+					<div style="font-size:10px;">If you want to change address, click <span class="quickViewTrigger">HERE</span>											
+						<div class="quickViewContainer">
+							<div id="quickViewCloseButton" class="close" style="margin-right:10px;"><span></span></div>
+							<div class="quickViewTitle">Update your address</div>
+							<div class="quickViewBody">	
+								<form action="#" method="post" th:action="@{/updateaddress}" th:object="${userDetails}">
+									<div class="fieldname">Firstname</div>
+									<input type="text" th:field="*{firstName}" readonly/><br />
+									<div class="fieldname">Lastname</div>
+									<input type="text" th:field="*{lastName}" readonly/><br />
+									<div class="fieldname">Country</div>
+									<input type="text" th:field="*{country}"/><br />
+									<div class="fieldname">City</div>				
+									<input type="text" th:field="*{city}"/><br />						
+									<div class="fieldname">Code</div>				
+									<input type="text" th:field="*{code}"/><br />
+									<div class="fieldname">Street</div>
+									<input type="text" th:field="*{street}"/><br />
+									<div class="fieldname">Number</div>
+									<input type="text" th:field="*{number}"/><br /><br />
+									
+									<input type="hidden" th:field="*{id}" />
+									<input type="submit" class="orderdetailsbutton" value="Update" />
+								</form>		
+							</div>
+						</div>
+					</div> 
+				</div>
+			</div>
+			<div style="clear:both"></div>
+			<div class="orderdetailsbox">
+				<div class="orderdetailsboxtitle">
+					Pending Orders
+				</div>
+				<div style="padding: 10px;" th:if="not ${userorders.isEmpty()}">
+        			<table>
+            			<tr>
+              	 			<th>Order number</th>
+               				<th>Order Date</th>
+               				<th>Total price</th>
+               				<th>Status</th>
+               				<th>Details</th>
+           	 			</tr>
+           	 			<tr th:each="order: ${userorders}">
+               				<td th:text="${order.id}"></td>
+               				<td th:text="${order.orderDate}"></td>
+               				<td th:text="${order.totalPrice}"></td>
+               				<td th:text="${order.status}"></td>
+               				<td><a th:href="@{/orders?orderid=}+${order.id}"><div class="orderdetailsbutton">Order Details</div></a></td>
+            			</tr>
+    				</table> 
+    			</div>
+			</div>
+		</div>
+		<div th:replace="fragments :: footer"></div>
+	</div>
+</body>
+</html>

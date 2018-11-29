@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<meta charset="UTF-8">
+	<title>My Online Shop</title>
+	<link th:src="@{/css/style.css}" href="/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+	<div id="container">
+		<div th:replace="fragments :: panel"></div>
+
+		<div id="content">
+			<div id="leftcontent">
+				<div th:if="${noProductMessage!= null}"><div class="invalidMessage" style="width:50%" th:text="${noProductMessage}"></div></div>
+				<div class="productimglarge"><img th:src="@{/img/product.jpg}" height="200" width="200"/></div>
+				<div class="productcard">
+					<div th:text="'Product Name: '+${product.name}"></div>
+					<div th:text="'Category: '+${product.category}"></div>
+					<div th:text="'Weight: '+${product.weight}+' g'"></div>
+					<div th:text="'Price: '+${product.price}+' $'"></div></br>
+					<form th:action="@{/addtocart}" method="post">
+						How many?
+						<select name="quantity">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select></br>
+						<input type="hidden" name="id" th:value="${product.id}" />
+						<input type="submit" class="addbutton" value="ADD TO CARD">
+					</form>
+				</div>
+				<div style="clear:both"></div>
+				<div class="productinformation">
+					<div th:text="${product.description}"></div>
+				</div>				
+			</div>
+			<div id="rightcontent">
+				<div th:if="${shoppingcart != null}">
+    				<div th:if="not ${shoppingcart.isEmpty()}">
+    					<div th:each="product: ${shoppingcart.entrySet()}">
+    						<div class="shoppingcartbox" >
+    							<div style="float:left">
+    								<div th:text="'Name: '+${product.getKey().name}"></div>
+    								<div th:text="'Category: '+${product.getKey().category}"></div>
+    								<div th:text="'Weight: '+${product.getValue()}+' x '+${product.getKey().weight}+' g'"></div>
+    								<div th:text="'Price: '+${product.getValue()*product.getKey().price}+' $'"></div>
+    							</div>
+    							<div class="redbuttonimg">
+    							
+    								<form th:action="@{/removefromcart}" method="post">
+										<input type="hidden" name="id" th:value="${product.getKey().id}" />
+										<input type="image" th:src="@{/img/redbutton.jpg}" alt="Submit Form" height="30" width="30"/>
+									</form>
+    							</div>
+    							<div style="clear:both"></div>
+    						</div>
+    					</div>
+    					<a th:href="@{/confirmorder}"><div class="shoppingcartsubmit" >
+							<div th:text="'Total value: '+${shoppingcartvalue}+' $'"></div>
+							CONFIRM ORDER
+						</div></a>
+    				</div>
+    			</div>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div th:replace="fragments :: footer"></div>
+	</div>
+</body>
+</html>

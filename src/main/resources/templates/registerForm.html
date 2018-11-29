@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<meta charset="UTF-8">
+	<title>My Online Shop</title>
+	<link th:src="@{/css/style.css}" href="/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+	<div id="container">
+		<div th:replace="fragments :: panel"></div>
+		
+		<div id="content">
+			<div class="orderdetailsbox">
+				<div class="orderdetailsboxtitle">
+					REGISTRATION FORM
+				</div>
+				<div style="text-align: center; margin-top: 30px;" >
+					<div th:if="${invalidMessage!= null}"><div class="invalidMessage" th:text="${invalidMessage}"></div></div>
+					<div th:if="${correctMessage}"><div class="correctMessage" th:text="${correctMessage}"></div></div>
+					If you want to buy something in our shop, you have to create account. Please, complete Registration Form below.<br><br>
+					<form action="#" method="post" th:action="@{/register}" th:object="${user}">
+						<div class="fieldname">Username</div>
+						<div class="errors" th:errors="*{username}"></div>
+						<input th:field="*{username}" placeholder="username" /><br />
+						<div class="fieldname">Password</div>
+						<div class="errors" th:errors="*{password}"></div>
+						<input th:field="*{password}" type="password" placeholder="password" /><br />
+						<div class="fieldname">Email</div>
+						<div class="errors" th:errors="*{email}"></div>
+						<input th:field="*{email}" type="email" placeholder="email" /><br />
+						<div class="fieldname">Phone</div>
+						<div class="errors" th:errors="*{phone}"></div>
+						<input th:field="*{phone}" placeholder="phone" /><br />
+						<input type="submit" class="orderdetailsbutton" value="Sign Up" />
+					</form>					
+    			</div>
+			</div>
+		</div>
+		<div th:replace="fragments :: footer"></div>
+	</div>
+</body>
+</html>

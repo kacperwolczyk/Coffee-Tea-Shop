@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<meta charset="UTF-8">
+	<title>My Online Shop</title>
+	<link th:src="@{/css/style.css}" href="/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+	<div id="container">
+		<div th:replace="fragments :: panel"></div>
+
+		<div id="content">
+			<div class="userpanelinfo">
+				<div class="orderdetailsboxtitle">
+					Your address
+				</div>
+				<div class="userpanelinfoadress">
+					<div>Name: <label style="font-weight: normal" th:text="${product.name}"/></div>
+					<div>Category: <label style="font-weight: normal" th:text="${product.category}"/></div>
+					<div>Count: <label style="font-weight: normal" th:text="${product.count}"/></div>
+					<div>Weight: <label style="font-weight: normal" th:text="${product.weight} +' g'"/></div>
+					<div>Price: <label style="font-weight: normal" th:text="${product.price} +' $'"/></div>
+					<div>Description: <label style="font-weight: normal" th:text="${product.description}"/></div></br>
+					<div style="font-size:10px;">If you want to change address, click here</div> 
+				</div>
+			</div>
+			<div class="userpanelinfo">
+				<div class="orderdetailsboxtitle">
+					Your address
+				</div>
+				<form action="#" method="post" th:action="@{/updateproduct}" th:object="${modelproduct}">
+
+					<input th:field="*{name}" placeholder="count"/><br />
+							
+
+					<input th:field="*{category}" placeholder="count"/><br />
+					
+
+					<input th:field="*{weight}" placeholder="count"/><br />
+					
+		
+					<input th:field="*{count}" placeholder="count"/><br />
+					
+	
+					<input th:field="*{price}" placeholder="price"/><br />
+					
+	
+					<textarea th:field="${modelproduct.description}" placeholder="description"></textarea><br />
+					<input type="hidden" name="productid" th:value="${product.id}" />
+					<input type="submit" value="Update" /><br /><br />
+				</form>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div th:replace="fragments :: footer"></div>
+	</div>
+</body>
+</html>

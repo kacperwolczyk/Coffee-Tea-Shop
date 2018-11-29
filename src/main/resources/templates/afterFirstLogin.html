@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<meta charset="UTF-8">
+	<title>My Online Shop</title>
+	<link th:src="@{/css/style.css}" href="/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+	<div id="container">
+		<div th:replace="fragments :: panel"></div>
+
+		<div id="content">
+			<div class="orderdetailsbox" style="padding: 10px;">
+				<div style="color: #B62306; font-size: 30px; text-align: center;">
+					! BEFORE YOU START !
+				</div><br>
+				Before you start using our application, you HAVE TO complete your user information. It is necessary, because for example we need your address to send your order.</br>
+				There is form below. Please complete all fields to ACTIVE your account. Without that, you are NOT able to create an order. Thank you!</br>
+				<form style="text-align:center;" action="#" th:action="@{/userdetails}" method="post" th:object="${userDetails}">
+					<div class="fieldname">Firstname</div>
+					<div class="errors" th:errors="*{firstName}"></div>
+					<input th:field="*{firstName}" placeholder="firstname" /><br />
+					<div class="fieldname">Lastname</div>
+					<div class="errors" th:errors="*{lastName}"></div>
+					<input th:field="*{lastName}" placeholder="lastname" /><br />
+					<div class="fieldname">Country</div>
+					<div class="errors" th:errors="*{country}"></div>
+					<input th:field="*{country}" placeholder="country" /><br />
+					<div class="fieldname">City</div>
+					<div class="errors" th:errors="*{city}"></div>
+					<input th:field="*{city}" placeholder="city" /><br />
+					<div class="fieldname">Code</div>
+					<div class="errors" th:errors="*{code}"></div>
+					<input th:field="*{code}" placeholder="code" /><br />
+					<div class="fieldname">Street</div>
+					<div class="errors" th:errors="*{street}"></div>
+					<input th:field="*{street}" placeholder="street" /><br />
+					<div class="fieldname">Number</div>
+					<div class="errors" th:errors="*{number}"></div>
+					<input th:field="*{number}" placeholder="number" /><br />
+					<input type="submit" class="orderdetailsbutton" value="Save" /><br /><br />
+				</form>
+			</div>
+		</div>
+		<div th:replace="fragments :: footer"></div>
+	</div>
+</body>
+</html>

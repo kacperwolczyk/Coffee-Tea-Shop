@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<meta charset="UTF-8">
+	<title>My Online Shop</title>
+	<link th:src="@{/css/style.css}" href="/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+	<div id="container">
+		<div th:replace="fragments :: panel"></div>
+
+		<div id="content">
+			<div class="orderdetailsbox">
+				<div class="orderdetailsboxtitle">
+					LOGIN FORM
+				</div>
+				<div style="text-align: center; margin-top: 30px;" >
+					If you want to buy something in our shop, you have to be authenticated. Please, log in. If you still don't have account in our service, go <a th:href="@{/register}">HERE</a> to register<br><br>
+   					<form th:action="@{/loginform}" method="post">
+   						<div class="fieldname">Username</div>
+        				<input name="username" placeholder="username" /> <br />
+        				<div class="fieldname">Password</div>
+        				<input name="password" type="password" placeholder="password" /> <br />
+        				<input type="submit" class="orderdetailsbutton" value="Login" />
+    				</form>
+    			</div>
+			</div>
+		</div>
+		<div th:replace="fragments :: footer"></div>
+	</div>
+</body>
+</html>

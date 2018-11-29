@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<meta charset="UTF-8">
+	<title>My Online Shop</title>
+	<link th:src="@{/css/style.css}" href="/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+	<div id="container">
+		<div th:replace="fragments :: panel"></div>
+
+		<div id="content">
+			<div class="orderdetailsbox">
+				<div class="orderdetailsboxtitle">
+					Order Details
+				</div>
+				<div style="padding: 10px;" th:if="not ${shoppingcart.isEmpty()}">
+        			<table>
+            			<tr>
+              	 			<th>Category</th>
+               				<th>Name</th>
+               				<th>Quantity</th>
+               				<th>Subtotal</th>
+           	 			</tr>
+           	 			<tr th:each="product: ${shoppingcart.entrySet()}">
+               				<td th:text="${product.getKey().category}"></td>
+               				<td th:text="${product.getKey().name}"></td>
+               				<td th:text="${product.getValue()}+' x '+${product.getKey().weight}+' g'"></td>
+               				<td th:text="${product.getValue()*product.getKey().price}+' $'"></td>
+            			</tr>
+            			<tr>
+            				<td style="border:none"></td>
+               				<td style="border:none"></td>
+               				<td style="border:none"></td>
+               				<td th:text="'Total value: ' + ${shoppingcartvalue}+' $'" style="font-weight:bold; border:none;"></td>
+            			</tr>
+    				</table> 
+    			</div>
+			</div>
+			<div class="orderdetailsbox">
+				<div class="orderdetailsboxtitle">
+					Your address
+				</div>
+				<div style="padding: 10px;">
+        			<table>
+            			<tr>
+              	 			<th>Name</th>
+               				<th>Surname</th>
+               				<th>Country</th>
+               				<th>City</th>
+               				<th>Code</th>
+               				<th>Street</th>
+           	 			</tr>
+           	 			<tr>
+               				<td th:text="${userdetails.firstName}"></td>
+               				<td th:text="${userdetails.lastName}"></td>
+               				<td th:text="${userdetails.country}"></td>
+               				<td th:text="${userdetails.city}"></td>
+               				<td th:text="${userdetails.code}"></td>
+               				<td th:text="${userdetails.street} +' '+${userdetails.number}"></td>
+            			</tr>
+    				</table> 
+    			</div>
+			</div>
+			<div class="orderdetailsbox" style="font-size: 16px;">
+				<div class="orderdetailsboxtitle">
+					Payment Details
+				</div>
+				<div style="padding: 10px;">
+					<form>
+						<div>
+							CARD NUMBER<br>
+							<input type="text" style="width: 100%" placeholder="Card Number" />
+						</div>
+						<div style="float:left; width: 70%">
+							EXPIRATION DATE<br>
+							<input type="text" style="width: 80%;" placeholder="MM/YY" />
+						</div>
+						<div style="float:left; width: 30%">
+							CV CODE<br>
+							<input type="text" style="width: 100%" placeholder="CVC" />
+						</div>
+					</form>
+					<div style="text-align: center;">
+						<form action="#" method="post" th:action="@{/createorder}">
+							<input type="submit" class="paybutton" value="Confirm&Pay"/>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:replace="fragments :: footer"></div>
+	</div>
+</body>
+</html>

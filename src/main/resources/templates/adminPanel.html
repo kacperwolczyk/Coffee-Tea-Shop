@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<meta charset="UTF-8">
+	<title>My Online Shop</title>
+	<link th:src="@{/css/style.css}" href="/css/style.css" rel="stylesheet" type="text/css"/>
+	<link th:src="@{/css/modal.css}" href="/css/modal.css" rel="stylesheet" type="text/css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/script.js}"></script>
+</head>
+<body>
+	<div id="container">
+		<div th:replace="fragments :: panel"></div>
+		<div id="content">
+			<div th:if="${invalidMessage!= null}"><div class="invalidMessage" th:text="${invalidMessage}"></div></div>
+			<div th:if="${correctMessage}"><div class="correctMessage" th:text="${correctMessage}"></div></div>
+			<div class="orderdetailsbox">
+				<div class="orderdetailsboxtitle">
+					Product Management
+				</div>
+				<div style="padding: 10px;" th:if="not ${products.isEmpty()}">
+        			<table>
+            			<tr>
+              	 			<th>Product ID</th>
+              	 			<th>Category</th>
+               				<th>Name</th>
+               				<th>Weight</th>
+               				<th>Count</th>
+               				<th>Price</th>
+           	 			</tr>
+           	 			<tr th:each="product: ${products}">
+               				<td th:text="${product.id}"></td>
+               				<td th:text="${product.category}"></td>
+               				<td th:text="${product.name}"></td>
+               				<td th:text="${product.weight}"></td>
+               				<td th:text="${product.count}"></td>
+               				<td th:text="${product.price}"></td>
+               				<td>
+								<div class="quickViewTrigger orderdetailsbutton">UPDATE</div>
+								<div class="quickViewContainer">
+									<div id="quickViewCloseButton" class="close" style="margin-right:10px;"><span></span></div>
+									<div class="quickViewTitle">Update your product</div>
+									<div class="quickViewBody">
+										<form action="#" method="post" th:action="@{/updateproduct}">
+											<div class="fieldname">Product name</div>
+											<input type="text" th:value="${product.name}" name="name"/><br />
+											<div class="fieldname">Product category</div>				
+											<input type="text" th:value="${product.category}" name="category"/><br />						
+											<div class="fieldname">Product weight (in grams)</div>				
+											<input type="text" th:value="${product.weight}" name="weight"/><br />
+											<div class="fieldname">Product count</div>
+											<input type="text" th:value="${product.count}" name="count"/><br />
+											<div class="fieldname">Product price (in $)</div>
+											<input type="text" th:value="${product.price}" name="price"/><br />
+											<div class="fieldname">Product description</div>
+											<textarea name="description" style="resize: none; width:300px; height: 100px;"><p th:value="${product.description}"></p></textarea><br /><br />
+											<input type="hidden" name="id" th:value="${product.id}" />
+											<input type="submit" class="orderdetailsbutton" value="Update" />
+										</form>	
+									</div>
+								</div>
+               				</td>
+            			</tr>
+            			<tr>
+            				<td style="border:none">
+            					<div class="quickViewTrigger orderdetailsbutton">ADD NEW</div>
+								<div class="quickViewContainer">
+									<div id="quickViewCloseButton" class="close" style="margin-right:10px;"><span></span></div>
+									<div class="quickViewTitle">Add new product</div>
+									<div class="quickViewBody">
+										<form action="#" method="post" th:action="@{/addproduct}" th:object="${newproduct}">
+											<div class="fieldname">Product name</div>
+											<div class="errors" th:errors="*{name}"></div>
+											<input th:field="*{name}" placeholder="name" /><br />
+						
+											<div class="fieldname">Product category</div>
+											<div class="errors" th:errors="*{category}"></div>
+											<input th:field="*{category}" placeholder="category" /><br />
+						
+											<div class="fieldname">Product weight (in grams)</div>
+											<div class="errors" th:errors="*{weight}"></div>
+											<input th:field="*{weight}" placeholder="weight" /><br />
+						
+											<div class="fieldname">Product count</div>
+											<div class="errors" th:errors="*{count}"></div>
+											<input th:field="*{count}" placeholder="count" /><br />
+						
+											<div class="fieldname">Product price (in $)</div>
+											<div class="errors" th:errors="*{price}"></div>
+											<input th:field="*{price}" placeholder="price" /><br />
+						
+											<div class="fieldname">Product description</div>
+											<div class="errors" th:errors="*{description}"></div>
+											<textarea th:field="*{description}" placeholder="description" style="resize: none; width:300px; height: 100px;"></textarea><br />
+											
+											<input type="submit" value="Add product" /><br /><br />
+										</form>	
+									</div>
+								</div>
+            				</td>
+            			</tr>
+    				</table> 
+    			</div>
+			</div>
+			<div class="orderdetailsbox">
+				<div class="orderdetailsboxtitle">
+					Pending Orders
+				</div>
+				<div style="padding: 10px;" th:if="not ${orders.isEmpty()}">
+        			<table>
+            			<tr>
+              	 			<th>Order number</th>
+              	 			<th>User</th>
+               				<th>Order Date</th>
+               				<th>Status</th>
+               				<th>Details</th>
+               				<th>Send</th>
+           	 			</tr>
+           	 			<tr th:each="order: ${orders}">
+               				<td th:text="${order.id}"></td>
+               				<td th:text="${order.user.username}"></td>
+               				<td th:text="${order.orderDate}"></td>
+               				<td th:text="${order.status}"></td>
+               				<td><a th:href="@{/orders?orderid=}+${order.id}"><div class="orderdetailsbutton">Order Details</div></a></td>
+							<td>
+								<form method="post" th:action="@{/sendorder}">
+									<input type="hidden" name="id" th:value="${order.id}" ></input>
+   									<input type="submit" class="orderdetailsbutton" value="Send" />
+								</form>
+							</td>
+            			</tr>
+    				</table> 
+    			</div>
+			</div>
+		</div>
+		<div th:replace="fragments :: footer"></div>
+	</div>
+</body>
+</html>
